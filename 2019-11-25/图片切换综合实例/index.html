@@ -290,9 +290,8 @@
         init();
 
 
-
+        let onoff= true;
         $a1.click(function () {
-
             console.log(1)
             $a1.css({
                 background: 'white',
@@ -302,7 +301,13 @@
                 background: 'black',
                 color: 'white'
             })
+            if(a1){
+                onoff = false;
+            }else{
+                onoff = true;
+            }
             $p1.html('图片可以从最后一张跳转到第一张循环切换')
+            onoff=!onoff
             $next.click(function () {
                 num++;
                 num %= len;
@@ -311,9 +316,8 @@
             $prev.click(function () {
                 num--;
                 if (num < 0) {
-                    num = 3
+                    num = len-1
                 }
-                num %= len;
                 init();
             });
         })

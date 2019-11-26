@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <ul id="ul">
+        
+            </ul>
+        <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+ /* 
+ $.each
+ $.ajax()
+
+ fech('url').then(e=>e.json()).then(d=>d)
+ 
+ 
+ 
+ 
+  */     //第一种方法  
+  fetch('https://www.baidu.com/s?id=12345&user=lilei&pass=123').then(d=>d.json()).then(d=>{d})
+
+         //第二种方法
+  $.ajax({
+            method:'post',
+            url:'https://www.baidu.com/s',
+            data:{
+                id:12345,
+                user:'lilei',
+                pass:123
+            },
+            success:function(data){
+
+            }
+        });
+
+
+
+      //  拿数据简单，难的是拿到数据怎么办
+    $.ajax({
+        url:'./1.json',
+        success:function(d){
+            console.log(d);
+        }
+    });
+
+    let obj = {
+        name:'小明'
+    }
+
+    // let obj2 = $.extend({},obj);   
+
+    // console.log(obj2 == obj);
+
+
+    // let ary = [1,2,[3,4]];
+
+    // let ary2 = $.extend(true,[],ary);   //true就代表深度克隆
+
+    // ary2[2].push(5);
+
+    // console.log(ary2);
+</script>
+</body>
+</html>
