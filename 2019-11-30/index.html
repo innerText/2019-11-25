@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../2019-11-30/css/index.css">
+    <link rel="stylesheet" href="../2019-11-30/css/reset.min.css">
+    <link rel="stylesheet" href="../2019-11-30/css/iconfont.css">
+</head>
+
+<body>
+    <div id="box1">
+        <div id="box3">
+            <div id="box2"><i class="iconfont icon-diqiu1"></i>
+                <p>珠峰培训</p>
+            </div>
+            <ul id="changjian">
+                <li><i class="iconfont icon-ziyuantianjiafuhao"></i>下载</li>
+                <li><i class="iconfont icon-ziyuantianjiafuhao"></i>分享</li>
+                <li><i class="iconfont icon-ziyuantianjiafuhao"></i>移动到</li>
+                <li><i class="iconfont icon-ziyuantianjiafuhao"></i>重命名</li>
+                <li><i class="iconfont icon-ziyuantianjiafuhao"></i>删除</li>
+                <li id="btn"><i class="iconfont icon-ziyuantianjiafuhao"></i>新建文件夹</li>
+            </ul>
+
+            <ul id="denglu">
+                <li><i class="iconfont icon-iconzhengli-"></i>用户登录</li>
+                <li><i class="iconfont icon-diqiu"></i>中文简体</li>
+            </ul>
+        </div>
+        <div id="reht">
+            <ul id="left">
+                <li>微云</li>
+                <li>我的文档</li>
+                <li>我的音乐</li>
+                <li>js权威指南</li>
+            </ul>
+            <div id="box9">
+                <div id="box">
+                    <p></p>
+                </div>
+            </div>
+            <div id="kuang"></div>
+        </div>
+    </div>
+
+    </div>
+    <script src="../2019-11-30/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../2019-11-30/js/bong.js"></script>
+    <script>
+        let ary = [
+            {
+                title: '新建文件夹',
+                id: 0
+            },
+            {
+                title: '新建文件夹(1)',
+                id: 1
+            }
+        ];
+        function render(arr) {
+            $('#box9').html('');
+            $.each(arr, (i, item) => {
+                let $folder = $(`
+                    <div id="box" class="iconfont icon-weibiaoti-_huabanfuben"><p>${item.title}</p></div>
+
+</div>
+                    `);
+                $folder.find('input').hide();
+                $('#box9').append($folder);
+            });
+        }
+        render(ary);
+        $('#btn').click(function () {
+            let $folder = $(`
+                <div id="box" class="iconfont icon-weibiaoti-_huabanfuben"><input type="text" placeholder="请设置文件名"  value="新建文件夹"/></div>
+
+</div>
+                `);
+            $('#box9').append($folder);
+            let $txt = $folder.find('input');
+            $txt.select(); //选中聚焦
+            $txt.blur(function () {
+                let val = $txt.val();
+                let bool = ary.map(item => item.title).includes(val);
+                let nval = '';
+                let num = 1;
+                nval = val; //把input中value给最新的value（最新的value就是最后的结果）
+                while (bool) {
+                    let s = val.replace(/\(\d\)$/, '') + '(' + num++ + ')';
+                    bool = ary.map(item => item.title).includes(s);
+                    nval = s;
+                }
+                ary.push({
+                    id: +new Date,
+                    title: nval
+                });
+                render(ary);
+            });//失焦事件
+        });
+        //*********************************************************************************
+
+
+        let box = document.querySelector('#kuang');
+        //框选
+
+        console.log(box);
+
+
+        document.onmousedown = function (ev) {
+            console.log(2);
+            box.style.display = 'block';
+            let downX = ev.pageX;
+            let downY = ev.pageY;
+            document.onmousemove = function (ev) {
+                console.log(3);
+
+                box.style.width = Math.abs(ev.pageX - downX) + 'px';
+                box.style.height = Math.abs(ev.pageY - downY) + 'px';
+                //console.log( Math.abs(ev.pageY - downY) + 'px');
+
+                box.style.top = Math.min(ev.pageY, downY) + 'px';
+                box.style.left = Math.min(ev.pageX, downX) + 'px';
+
+                let b = document.querySelectorAll('#box9 div')
+                //碰撞
+                b.forEach(ele => {
+                    if (bong(box, ele)) {
+                        ele.style.background = 'pink';
+                    } else {
+                        ele.style.background = '';
+                    }
+
+
+                })
+
+
+                return false;
+            }
+            document.onmouseup = function (ev) {
+                box.style.height = box.style.width = 0;
+                box.style.display = 'none';
+                console.log(1);
+
+                // document.onmousedown =null;
+                document.onmousemove = null;
+                document.onmouseup = null;
+
+                return false;
+            }
+            //return false;
+        }
+
+    </script>
+</body>
+
+</html>
