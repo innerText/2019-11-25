@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>立方体</title>
+</head>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#box{
+  width: 100px;
+  height: 100px;
+  margin:10% auto ;
+  position: relative;
+  perspective: none;
+  transform-style: preserve-3d;
+  transition: 10s;
+
+}
+#box:hover{
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+     animation-iteration-count :infinite;
+}
+#box div{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top:0;
+    left: 0;
+    margin: 0 auto;
+    
+}
+#box div:nth-child(1){
+    background: rgb(131, 122, 255);
+}
+#box div:nth-child(2){
+    background: rgb(255, 122, 129);
+    left: 0px;
+    transform-origin: right;
+    transform:rotateY(-90deg)
+}
+#box div:nth-child(3){
+    background: rgb(39, 38, 38);
+    top: -100px;
+    transform-origin: bottom ;
+    transform:rotateX(90deg)
+}
+#box div:nth-child(4){
+    background: rgb(36, 216, 19);
+    right: 0px;
+    transform-origin: left ;
+    transform:rotateY(90deg)
+}
+#box div:nth-child(5){
+    background: rgb(15, 25, 161);
+    top: 100px;
+    transform-origin: top;
+    transform:rotateX(-90deg)
+
+}
+#box div:nth-child(6){
+    background: rgb(218, 0, 0);
+    transform: translateZ(-100px);
+}
+
+
+
+
+</style>
+<body>
+    <div id="box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+</body>
+</html>
