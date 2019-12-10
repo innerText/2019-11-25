@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>炸裂相册</title>
+    <style>
+        #box {
+            width: 520px;
+            height: 520px;
+            border: solid #000 5px;
+            margin: 100px auto;
+            position: relative;
+            perspective: 1000px;
+            transform-style:preserve-3d ;
+            /* background: url('./img/meinv.jpg') no-repeat; */
+        }
+
+        #box div {
+            position: absolute;
+            background: olivedrab;
+            width: 52px;
+            height: 52px;
+            background: url('./img/1.jpg') no-repeat;
+            transition: 1s;
+            
+            /* transform: translateZ(0px); */
+            /* background-size: cover; */
+            /* background-position: center center; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        const m = 52,
+            box = document.querySelector('#box')
+        let temp = ''
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                temp +=
+                    `<div data-x="${-j*m}" data-y="${-i*m}" style="top:${i*m}px;left:${j*m}px;background-position:${-j*m}px ${-i*m}px;"></div>`
+            };
+        };
+        box.innerHTML = temp;
+        const divs = document.querySelectorAll('#box div');
+        // console.log(divs)
+        box.onclick = function () {
+            // console.log(1)
+            for (let i = 0; i < divs.length; i++) {
+                const {
+                    x,
+                    y
+                } = divs[i].dataset;
+                divs[i].style.top = `${-y*1+random(-100,100)}px`;
+                divs[i].style.left = `${-x*1+random(-100,100)}px`;
+                divs[i].style.transform = `translateZ(1000px) skewX(${random(-45,45)}deg)`;
+                divs[i].style.opacity = 0
+            };
+            setTimeout(() => {
+                for (let i = 0; i < divs.length; i++) {
+                    const {
+                        x,
+                        y
+                    } = divs[i].dataset;
+                    divs[i].style.top = `${-y}px`;
+                    divs[i].style.left = `${-x}px`;
+                    divs[i].style.transform = `translateZ(0px) skewX(0deg)`;
+                    divs[i].style.opacity = 1;
+                }
+            }, 1000);
+        };
+
+        function random(m, n) {
+            return Math.round(Math.random() * (n - m)) + m
+        }
+    </script>
+</body>
+
+</html>
