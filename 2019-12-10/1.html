@@ -20,22 +20,15 @@
                     if (Array.isArray(obj[i])) {
                         fn(obj[i])
                     } else {
-                        // aa.push(obj[i][key])
                         fn(obj[i])
                     }
                 }
             } else {
                 for (let key in obj) {
                     aa.push(key)
-                    if (Array.isArray(obj[key])) {
-                        fn(obj[key])
-                    } else {
-                        fn(obj[key])
-                    }
+                    fn(obj[key])
                 }
             }
-
-            return aa
         }
         fn(obj)
         console.log(aa);

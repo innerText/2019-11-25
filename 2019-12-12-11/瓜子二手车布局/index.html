@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function refreshRem() {
+            var desW = 750,//设计图的宽度
+                winW = window.screen.width, //document.documentElement.clientWidth||document.body.clientWidth;
+                ratio = winW / desW,
+                html = document.documentElement;
+            html.style.fontSize = ratio * 100 + 'px';
+        }
+        refreshRem();
+        window.addEventListener('resize', refreshRem);   
+    </script>
+    <link rel="stylesheet" href="./1.css">
+    <link rel="stylesheet" href="./reset.min.css">
+    <link rel="stylesheet" href="./iconfont.css">
+    <link rel="stylesheet" href="./swiper.min.css">
+</head>
+
+<body>
+    <div id="nav">
+        <div class="z">
+            <p>北京</p><i class="iconfont icon-arrow_downward"></i>
+        </div>
+        <div>
+            <span><i class="iconfont icon-sousuo"></i>
+                <p>搜索你要的车</p>
+            </span></div>
+        <div>
+            <i class="iconfont icon-erji"></i><i class="iconfont icon-xiaorentubiaohuisezuixin"></i>
+
+        </div>
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="./2.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="./3.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="./1.png" alt=""></div>
+        </div>
+    </div>
+    <ul class="nav1">
+        <li>
+            <div></div>
+            <p>二手车</p>
+        </li>
+        <li>
+            <div></div>
+            <p>严选车</p>
+        </li>
+        <li>
+            <div></div>
+            <p>全国购</p>
+        </li>
+        <li>
+            <div></div>
+            <p>新车</p>
+        </li>
+        <li>
+            <div></div>
+            <p>免费卖车</p>
+        </li>
+    </ul>
+    <ul class="nav2">
+        <li>
+            <div></div>
+            <p>严选店</p>
+        </li>
+        <li>
+            <div></div>
+            <p>估价</p>
+        </li>
+        <li>
+            <div></div>
+            <p>养车</p>
+        </li>
+        <li>
+            <div></div>
+            <p>租车</p>
+        </li>
+        <li>
+            <div></div>
+            <p>快速卖车</p>
+        </li>
+    </ul>
+    <div class="r">
+        <div><img src="./t6.jpg" alt=""></div>
+        <div class="che">
+            <p class="p1">三万以上</p>
+
+            <p class="p2">Jeep自由光</p>
+        </div>
+        <p class="iconfont icon-pageright" id="p3"></p>
+    </div>
+
+    <div class="heder">
+        <p class="pp">热门二手车</p>
+        <div>
+            <div class="nei">
+                <p class="pp1">查看全部</p> <i class="iconfont icon-pageright"></i>
+            </div>
+        </div>
+    </div>
+    <div class="xian"></div>
+
+
+    <ul class="marni">
+        <li>5万以下</li>
+        <li>5-10万</li>
+        <li>10-15万</li>
+        <li>15万以上</li>
+    </ul>
+    <ul class="marni1">
+        <li>
+            <div></div>
+            <p>大众</p>
+        </li>
+        <li>
+            <div></div>
+            <p>本田</p>
+        </li>
+        <li>
+            <div></div>
+            <p>丰田</p>
+        </li>
+        <li>
+            <div></div>
+            <p>奔驰</p>
+        </li>
+    </ul>
+    <ul class="marni2">
+        <li>
+            <div></div>
+            <p>日产</p>
+        </li>
+        <li>
+            <div></div>
+            <p>别克</p>
+        </li>
+        <li>
+            <div></div>
+            <p>福特</p>
+        </li>
+        <li>
+            <div></div>
+            <p>奥迪</p>
+        </li>
+    </ul>
+    <div class="fot">
+        <div class="foot"><img src="./p1.png" alt="">
+            <div class="foot1">
+                <p class="j1">今日超值</p>
+                <p class="j2">低价开好车</p>
+            </div>
+        </div>
+        <div class="foo-t"><img src="./p2.png" alt="">
+            <div class="foot-1">
+                <p class="j-1">降价急售</p>
+                <p class="j-2">降价更划算</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="zui">
+        <div class="foott"><img src="./p3.png" alt="">
+            <div class="foot1t">
+                <p class="j1t">瓜子租车</p>
+                <p class="j2t">长租更优惠</p>
+            </div>
+        </div>
+        <div class="foottf"><img src="./p4.png" alt="">
+            <div class="foot1tf">
+                <p class="j1tf">爆款SUV</p>
+                <p class="j2tf">新车首付3千起</p>
+            </div>
+        </div>
+        <div class="foottz"><img src="./p5.png" alt="">
+            <div class="foot1tz">
+                <p class="j1tz">分期购车</p>
+                <p class="j2tz">轻松买车0压力</p>
+            </div>
+        </div>
+    </div>
+    <div class="mm">
+        <div class="lil">
+            <div class="li"><img src="./l.jpg" alt="">
+                <div class="li1">
+                    <p class="li2">北京五方天雅店</p>
+                    <p class="li3">朝阳260辆在售车</p>
+                </div>
+            </div>
+        </div>
+        <div class="lil1">
+            <div class="li1"><img src="./shangmen@2x.ff16aa291a91080a2604756bfb6add32.png" alt="">
+                <div class="li11">
+                    <p class="li21">北京五方天雅店</p>
+                    <p class="li31">朝阳260辆在售车</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fot">
+        <div class="foot"><img src="./p1.png" alt="">
+            <div class="foot1">
+                <p class="j1">今日超值</p>
+                <p class="j2">低价开好车</p>
+            </div>
+        </div>
+        <div class="foo-t"><img src="./p2.png" alt="">
+            <div class="foot-1">
+                <p class="j-1">降价急售</p>
+                <p class="j-2">降价更划算</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="zui">
+        <div class="foott"><img src="./p3.png" alt="">
+            <div class="foot1t">
+                <p class="j1t">瓜子租车</p>
+                <p class="j2t">长租更优惠</p>
+            </div>
+        </div>
+        <div class="foottf"><img src="./p4.png" alt="">
+            <div class="foot1tf">
+                <p class="j1tf">爆款SUV</p>
+                <p class="j2tf">新车首付3千起</p>
+            </div>
+        </div>
+        <div class="foottz"><img src="./p5.png" alt="">
+            <div class="foot1tz">
+                <p class="j1tz">分期购车</p>
+                <p class="j2tz">轻松买车0压力</p>
+            </div>
+        </div>
+    </div>
+    <div class="mm">
+        <div class="lil">
+            <div class="li"><img src="./l.jpg" alt="">
+                <div class="li1">
+                    <p class="li2">北京五方天雅店</p>
+                    <p class="li3">朝阳260辆在售车</p>
+                </div>
+            </div>
+        </div>
+        <div class="lil1">
+            <div class="li1"><img src="./shangmen@2x.ff16aa291a91080a2604756bfb6add32.png" alt="">
+                <div class="li11">
+                    <p class="li21">北京五方天雅店</p>
+                    <p class="li31">朝阳260辆在售车</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fot">
+        <div class="foot"><img src="./p1.png" alt="">
+            <div class="foot1">
+                <p class="j1">今日超值</p>
+                <p class="j2">低价开好车</p>
+            </div>
+        </div>
+        <div class="foo-t"><img src="./p2.png" alt="">
+            <div class="foot-1">
+                <p class="j-1">降价急售</p>
+                <p class="j-2">降价更划算</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="zui">
+        <div class="foott"><img src="./p3.png" alt="">
+            <div class="foot1t">
+                <p class="j1t">瓜子租车</p>
+                <p class="j2t">长租更优惠</p>
+            </div>
+        </div>
+        <div class="foottf"><img src="./p4.png" alt="">
+            <div class="foot1tf">
+                <p class="j1tf">爆款SUV</p>
+                <p class="j2tf">新车首付3千起</p>
+            </div>
+        </div>
+        <div class="foottz"><img src="./p5.png" alt="">
+            <div class="foot1tz">
+                <p class="j1tz">分期购车</p>
+                <p class="j2tz">轻松买车0压力</p>
+            </div>
+        </div>
+    </div>
+    <div class="mm">
+        <div class="lil">
+            <div class="li"><img src="./l.jpg" alt="">
+                <div class="li1">
+                    <p class="li2">北京五方天雅店</p>
+                    <p class="li3">朝阳260辆在售车</p>
+                </div>
+            </div>
+        </div>
+        <div class="lil1">
+            <div class="li1"><img src="./shangmen@2x.ff16aa291a91080a2604756bfb6add32.png" alt="">
+                <div class="li11">
+                    <p class="li21">北京五方天雅店</p>
+                    <p class="li31">朝阳260辆在售车</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fot">
+        <div class="foot"><img src="./p1.png" alt="">
+            <div class="foot1">
+                <p class="j1">今日超值</p>
+                <p class="j2">低价开好车</p>
+            </div>
+        </div>
+        <div class="foo-t"><img src="./p2.png" alt="">
+            <div class="foot-1">
+                <p class="j-1">降价急售</p>
+                <p class="j-2">降价更划算</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="zui">
+        <div class="foott"><img src="./p3.png" alt="">
+            <div class="foot1t">
+                <p class="j1t">瓜子租车</p>
+                <p class="j2t">长租更优惠</p>
+            </div>
+        </div>
+        <div class="foottf"><img src="./p4.png" alt="">
+            <div class="foot1tf">
+                <p class="j1tf">爆款SUV</p>
+                <p class="j2tf">新车首付3千起</p>
+            </div>
+        </div>
+        <div class="foottz"><img src="./p5.png" alt="">
+            <div class="foot1tz">
+                <p class="j1tz">分期购车</p>
+                <p class="j2tz">轻松买车0压力</p>
+            </div>
+        </div>
+    </div>
+    <div class="mm">
+        <div class="lil">
+            <div class="li"><img src="./l.jpg" alt="">
+                <div class="li1">
+                    <p class="li2">北京五方天雅店</p>
+                    <p class="li3">朝阳260辆在售车</p>
+                </div>
+            </div>
+        </div>
+        <div class="lil1">
+            <div class="li1"><img src="./shangmen@2x.ff16aa291a91080a2604756bfb6add32.png" alt="">
+                <div class="li11">
+                    <p class="li21">北京五方天雅店</p>
+                    <p class="li31">朝阳260辆在售车</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fot">
+        <div class="foot"><img src="./p1.png" alt="">
+            <div class="foot1">
+                <p class="j1">今日超值</p>
+                <p class="j2">低价开好车</p>
+            </div>
+        </div>
+        <div class="foo-t"><img src="./p2.png" alt="">
+            <div class="foot-1">
+                <p class="j-1">降价急售</p>
+                <p class="j-2">降价更划算</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="zui">
+        <div class="foott"><img src="./p3.png" alt="">
+            <div class="foot1t">
+                <p class="j1t">瓜子租车</p>
+                <p class="j2t">长租更优惠</p>
+            </div>
+        </div>
+        <div class="foottf"><img src="./p4.png" alt="">
+            <div class="foot1tf">
+                <p class="j1tf">爆款SUV</p>
+                <p class="j2tf">新车首付3千起</p>
+            </div>
+        </div>
+        <div class="foottz"><img src="./p5.png" alt="">
+            <div class="foot1tz">
+                <p class="j1tz">分期购车</p>
+                <p class="j2tz">轻松买车0压力</p>
+            </div>
+        </div>
+    </div>
+    <div class="mm">
+        <div class="lil">
+            <div class="li"><img src="./l.jpg" alt="">
+                <div class="li1">
+                    <p class="li2">北京五方天雅店</p>
+                    <p class="li3">朝阳260辆在售车</p>
+                </div>
+            </div>
+        </div>
+        <div class="lil1">
+            <div class="li1"><img src="./shangmen@2x.ff16aa291a91080a2604756bfb6add32.png" alt="">
+                <div class="li11">
+                    <p class="li21">北京五方天雅店</p>
+                    <p class="li31">朝阳260辆在售车</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./swiper.min.js"></script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            // direction: 'vertical', // 垂直切换选项
+            loop: true,
+            // loop: autoplay, // 循环模式选项
+            autoplay: true,
+        })        
+    </script>
+</body>
+
+</html>
