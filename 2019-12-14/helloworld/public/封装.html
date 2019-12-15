@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    注册的用户名:<input id="user" type="text"/><span id="s"></span> </br>
+    注册的密码:<input type="password" id="pw"/>
+    <button id="btn">提交</button>
+
+    <script>
+    user.onblur = function(){
+        ajax('/get',{
+            error:function(status){
+                console.log(status);
+                
+            },
+            success:function(d){
+                console.log(d,'成功');
+                
+            }
+        },{
+            method:'GET',
+            body:'user='+this.value,
+            headers:{
+                'content-type':'application/x-www-form-urlencoded'
+            }
+        });
+    }
+    function ajax(url,cb,opt){
+        //如果没有传入opt就myopt就是一个undefined
+        var myopt = opt && {
+            method:opt.method||'get',
+            body:opt.body||'',
+            headers:opt.headers||{}
+
+        }
+        var len = arguments,length;
+        var xhr = new XMLHttpRequest;
+
+        if(len === 2){
+            //直接走get即可
+            xhr.open('get',url,true);
+            xhr.send();
+            xhr.onload = function(){
+                cb && cb(JSON.parse(xhr.responseText))
+            }
+        }else if(len===3){//传了第三个参数(配置顶)
+            if(/^get&/i.test(myopt.method)){
+                xhr.open('get',url+'?'+myopt.body+'&myrandom='+Date.now(),true);
+                xhr.onreadystatechange=function(){
+                    //cb && cb
+                    //(xhr.responseText);
+
+                    /* 
+                    200-207
+                    301 304
+
+                    20[0-7]|30[14]
+                    
+                    */
+                   if(xhr.readyState === 4){
+                       //xhr.status 状态码
+                       if(/( 20[0-7]|30[14])/.test(xht.status)){
+                        //    console.log(xhr.responseText);
+                        cb.success && cb.success(eval('('+xhr.responseText+')'))
+                        }else{
+                            cb.error &&  cb.error(xhr.status);
+                        }
+                        
+                        }
+                            // console.log('失败');
+                        }
+                        xhr.send();   
+                           
+                       }else if(/^post$/i.test(myopt.method)){
+                           xhr.open('post',url,true);
+                           for(var attr in myopt.headers)
+                           {
+                               if(myopt.headers.hasOwnProperty(attr)){
+                                   xhr.setRequestHeader(attr,myopt.headers[attr]);
+                               }
+                           }
+                           xhr.send(myopt.body);
+                           xhr.onload = function(){
+                               cb&&cb(JSON.parse(xhr.responseText))
+                           
+                       
+                   }
+                }
+            }
+        }
+  
+    
+    
+    
+    
+    </script>
+</body>
+</html>
