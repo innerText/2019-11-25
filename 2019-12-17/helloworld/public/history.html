@@ -44,6 +44,7 @@
          btns.forEach((ele,i)=>{
              ele.onclick = function(){
                  p.innerHTML = ary[i];
+                // window下面的方法
                  window.history.pushState({
                      num:i
                  },'','http://localhost:88/6_history.html/'+i)

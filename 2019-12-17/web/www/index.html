@@ -37,16 +37,196 @@
         </div>
     </div>
     <script>
-    /* 
-    只要是ajax请求，优先把数据打印出来看看
-    
-    
-     */
-    //刷新就请求第一页的数据
-    fetch('/api/weibo?act=get&page=1').then(d=>d.json()).then(d=>{
-        console.log(d);
-        
-    })
+     /*
+        只要是ajax请求，优先把数据打印出来看看
+    */
+
+        //刷新就请求第一页的数据
+        aa(window.location.hash.substring(1))
+        /* 
+            请求完数据渲染之前要先清空之前的数据，在请求数据之前请会有跳的感觉
+        */
+        function aa(page) {
+            fetch('/api/weibo?act=get&page=' + page).then(d => d.json()).then(d => {
+                div1.innerHTML = '';
+                d.reverse();
+                d.forEach(e => {
+                    // console.log(e)
+                    render(e);
+                    // console.log(e)
+                });
+            });
+        }
+
+        /* 
+            获取页码
+        */
+        function getPage() {
+            let page = document.querySelector('#page');
+            fetch('/api/weibo?act=get_page_count').then(d => d.json()).then(d => {
+                page.innerHTML = ''
+                for (let i = 0; i < d.count; i++) {
+                    let a = document.createElement('a');
+                    a.innerText = i + 1;
+                    //默认第一页
+                    if (i === 0) {
+                        a.className = 'active'
+                    }
+                    page.appendChild(a)
+                }
+                let as = document.querySelectorAll('#page a');
+                // console.log(as)
+                let qx = 0
+                as.forEach((ele, i) => {
+                    ele.onclick = function (ev) {
+                        as[qx].className = ''
+                        this.className = 'active';
+                        aa(this.innerText);
+                        // console.log(this.innerText)
+                        qx = i
+                        window.location.hash = `${this.innerText}`
+                    }
+                })
+            })
+        }
+        getPage()
+
+        /* 
+            顶
+        */
+        function pra() {
+            let ding = document.querySelectorAll('.top');
+            ding.forEach((ele, i) => {
+                ele.onclick = function (ev) {
+                    let did = this.parentNode.dataset.did
+                    fetch('/api/weibo?act=like&id='+ did).then(d1 => d1.json()).then(dd => {
+                        if (dd.code === 0) {
+                            aa(window.location.hash.substring(1))
+
+                        }
+                    })
+                }
+            })
+        }
+        /* 
+            踩
+        */
+        function pr() {
+            // console.log(d)
+            let ding = document.querySelectorAll('.down_icon');
+            // console.log(ding)
+            ding.forEach((ele, i) => {
+                ele.onclick = function (ev) {
+                    // console.log(this.parentNode)
+                    let did = this.parentNode.dataset.did
+                    fetch('/api/weibo?act=dislike&id=' + did).then(d1 => d1.json()).then(dd => {
+                        if (dd.code === 0) {
+                            // dd.like = ++this.innerText
+                            // dd.content = this.value;
+                            // dd.dislike = 0;
+                            // render(window.location.hash)
+                            // console.log(window.location.hash);
+
+                            aa(window.location.hash.substring(1))
+
+                        }
+                    })
+                }
+            })
+        }
+
+
+
+
+
+        function r() {
+            // console.log(d)
+            let ding = document.querySelectorAll('.cut');
+            // console.log(ding)
+            ding.forEach((ele, i) => {
+                ele.onclick = function (ev) {
+                    // console.log(this.parentNode)
+                    let did = this.parentNode.dataset.did
+                    fetch('/api/weibo?act=del&id=' + did).then(d1 => d1.json()).then(dd => {
+                        if (dd.code === 0) {
+                            // dd.like = ++this.innerText
+                            // dd.content = this.value;
+                            // dd.dislike = 0;
+                            // render(window.location.hash)
+                            // console.log(window.location.hash);
+
+                            aa(window.location.hash.substring(1))
+                               getPage()
+                        }
+                    })
+                }
+            })
+        }
+        /*
+            点击发送按钮，发送消息
+        */
+
+        function toDou(n) {
+            return n < 10 ? '0' + n : '' + n;
+        }
+
+
+        submit.onclick = function () {
+            let {
+                value
+            } = text;
+
+            //请求成功之后才能插入页面
+            fetch('/api/weibo?act=add&content=' + value).then(d => d.json()).then(d => {
+                // console.log(d);
+
+                if (d.code === 0) {
+                    /*
+                        如果在使用服务器时间的时候，发现设置的时间为1970，直接*1000,因为服务器时间是以秒来计算的
+                    */
+                    // console.log(d);
+                    //因为d里面没有content，但是render里需要content，所以给数据添加了一个content属性
+                    d.content = value;
+                    // d.like = 0;
+                    // d.dislike = 0;
+                    render(d);
+                    text.value = '';
+                }
+            })
+            //同步页码
+            getPage()
+            aa(1)
+        }
+
+
+        function render(d) {
+            // console.log(d)
+            let o = new Date(d.time);
+            let year = o.getFullYear();
+            let moun = o.getMonth() + 1;
+            let date = o.getDate();
+            let h = o.getHours();
+            let m = o.getMinutes();
+            let s = o.getSeconds();
+            // console.log(o);
+            //为了让最新的数据放到最前边
+            div1.innerHTML = `
+            <div class="reply">
+                    <p class="replyContent">${d.content}</p>
+                    <p class="operation">
+                        <span class="replyTime">${year}-${toDou(moun)}-${toDou(date)} ${toDou(h)}:${toDou(m)}:${toDou(s)}</span>
+                        <span class="handle" data-did=${d.id}>
+                            <a href="javascript:;" class="top">${d.like}</a>
+                            <a href="javascript:;" class="down_icon">${d.dislike}</a>
+                            <a href="javascript:;" class="cut">删除</a>
+                        </span>
+                    </p>
+            </div>
+        ` + div1.innerHTML;
+            pra()
+             pr()
+            r()
+        }
     
     </script>
 </body>
