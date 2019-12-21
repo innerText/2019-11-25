@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /* 
+    统一的遍历api
+    for of
+
+    一个数据结构只要部署了Symbol.interator属性，就被视为具有iterator接口，就可以用for...fo循环遍历它的成员。
+    也就是说，for....of循环内部调用的是数据结构的
+    Symbol.iteerator方法。
+
+    要遍历key->ary.keys()
+    要遍历value->ary.values()
+    要遍历->ary.entries()
+
+    字符串，数组，map，set，quwrySelectorAll
+    都有Symbol.iterator
+    
+    
+    
+    
+    
+     */
+    let ary = [1,2,3];
+    for(let i of ary.values()){
+        console.log(i);
+        
+    }
+    for(let [k,v] of ary.entries()){
+        console.log(k,v);
+        
+    }
+    console.dir(document.querySelectorAll('div'));
+
+    let obj = {
+        name:'小明',
+        age:18,
+        sex:'妹纸'
+    }
+
+    //对象没有遍历接口，但是可以添加一个遍历接口
+    //console.dir(obj);//for in 如果要让对象有遍历接口还不如用for in
+    
+    
+    
+    
+    
+    
+    </script>
+</body>
+</html>

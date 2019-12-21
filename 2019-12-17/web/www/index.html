@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+`<!DOCTYPE html>
 <html >
 <head>
     <meta charset="UTF-8">
@@ -40,9 +40,10 @@
      /*
         只要是ajax请求，优先把数据打印出来看看
     */
-
+    // window.location.hash=1
         //刷新就请求第一页的数据
         aa(window.location.hash.substring(1))
+    
         /* 
             请求完数据渲染之前要先清空之前的数据，在请求数据之前请会有跳的感觉
         */
@@ -51,9 +52,7 @@
                 div1.innerHTML = '';
                 d.reverse();
                 d.forEach(e => {
-                    // console.log(e)
                     render(e);
-                    // console.log(e)
                 });
             });
         }
@@ -82,7 +81,6 @@
                         as[qx].className = ''
                         this.className = 'active';
                         aa(this.innerText);
-                        // console.log(this.innerText)
                         qx = i
                         window.location.hash = `${this.innerText}`
                     }
@@ -90,19 +88,19 @@
             })
         }
         getPage()
-
         /* 
             顶
         */
         function pra() {
-            let ding = document.querySelectorAll('.top');
-            ding.forEach((ele, i) => {
+            let zan = document.querySelectorAll('.top');
+            console.log(zan);
+            
+            zan.forEach((ele, i) => {
                 ele.onclick = function (ev) {
                     let did = this.parentNode.dataset.did
                     fetch('/api/weibo?act=like&id='+ did).then(d1 => d1.json()).then(dd => {
                         if (dd.code === 0) {
                             aa(window.location.hash.substring(1))
-
                         }
                     })
                 }
@@ -112,21 +110,13 @@
             踩
         */
         function pr() {
-            // console.log(d)
-            let ding = document.querySelectorAll('.down_icon');
-            // console.log(ding)
-            ding.forEach((ele, i) => {
+            let zan = document.querySelectorAll('.down_icon');
+            zan.forEach((ele, i) => {
                 ele.onclick = function (ev) {
                     // console.log(this.parentNode)
                     let did = this.parentNode.dataset.did
                     fetch('/api/weibo?act=dislike&id=' + did).then(d1 => d1.json()).then(dd => {
                         if (dd.code === 0) {
-                            // dd.like = ++this.innerText
-                            // dd.content = this.value;
-                            // dd.dislike = 0;
-                            // render(window.location.hash)
-                            // console.log(window.location.hash);
-
                             aa(window.location.hash.substring(1))
 
                         }
@@ -134,27 +124,14 @@
                 }
             })
         }
-
-
-
-
-
+     //删除
         function r() {
-            // console.log(d)
-            let ding = document.querySelectorAll('.cut');
-            // console.log(ding)
-            ding.forEach((ele, i) => {
+            let zan = document.querySelectorAll('.cut');
+            zan.forEach((ele, i) => {
                 ele.onclick = function (ev) {
-                    // console.log(this.parentNode)
                     let did = this.parentNode.dataset.did
-                    fetch('/api/weibo?act=del&id=' + did).then(d1 => d1.json()).then(dd => {
+                    fetch('/api/weibo?act=del&id=' + did).then(d1 =>d1.json()).then(dd =>{
                         if (dd.code === 0) {
-                            // dd.like = ++this.innerText
-                            // dd.content = this.value;
-                            // dd.dislike = 0;
-                            // render(window.location.hash)
-                            // console.log(window.location.hash);
-
                             aa(window.location.hash.substring(1))
                                getPage()
                         }
@@ -227,7 +204,7 @@
              pr()
             r()
         }
-    
+        
     </script>
 </body>
 </html>
