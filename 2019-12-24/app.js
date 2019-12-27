@@ -5,6 +5,9 @@ const path = require('path');//平路径
 const bodyParser = require('body-parser');//post
 const session = require('express-session');//种cookie
 
+
+
+
 app.use(express.static('www'));//中间件
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(session({
@@ -88,11 +91,10 @@ app.post('/login',(req,res)=>{
     if(user && pw ){
         let o =sql.find(item=>item.user===user);
         if(o){//说明有这个人，但是密码还没核对
-            if(o.pw ===pw){
+            if(o.pw === pw){
             msgObj.code = 0;
             msgObj.msg = '登录成功';
             req.session.userinfo = user;
-
         }else{
             msgObj.code = 3;
             msgObj.msg = '用户名或密码错误';
